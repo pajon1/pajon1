@@ -66,14 +66,16 @@ Para maximizar el capital que tendremos dentro de 3 años:
 + El tercer año invertimos también en depósitos a 1 año nuestro dinero. 1622.4€\*1.04=1687.296€.
 
 ## Ejercicio 2
-*Se dispone de tres tipos de aviones: A1, A2 y A3 para transportar sacos con alimentos desde un aeropuerto hasta cinco aldeas: V1, V2, V3, V4 y V5, afectadas por inundaciones. La cantidad de alimentos (en unidades adecuadas) que cada avión puede transportar a cada aldea en cada viaje, se da en la siguiente tabla. El número de viajes que puede hacer cada avión se da en la última columna y el número de vuelos que pueden realizarse sobre cada aldea diariamente en la última fila. Encontrar el número de viajes que deberá hacer cada avión a cada aldea de forma que se maximice la cantidad de alimento distribuido por día.*
+*Una empresa produce listones de madera en cuatro medidas: pequeño, mediano,
+grande y extra grande. Estos listones pueden producirse en tres máquinas: A, B y C. La
+cantidad de metros que puede producir por hora cada máquina es:*
 
-|    | V1 | V2 | V3 | V4 | V5 | VT |
-|----|----|----|----|----|----|----|
-| A1 | 10 | 8  | 6  | 9  | 12 | 50 |
-| A2 | 5  | 3  | 8  | 4  | 10 | 90 |
-| A3 | 7  | 9  | 6  | 10 | 4  | 60 |
-| AT | 100| 80 | 70 | 40 | 20 |    |
+|    | A | B | C |
+|----|----|----|----|
+| Pequeño | 10 | 8  | 6  |
+| Mediano | 5  | 3  | 8  |
+| Grande | 7  | 9  | 6  |
+| Extra grande | 100| 80 | 70 |
 + Variable de decisión:
 $x_{ij}$
 
