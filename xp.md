@@ -72,10 +72,16 @@ cantidad de metros que puede producir por hora cada máquina es:*
 
 |    | A | B | C |
 |----|----|----|----|
-| Pequeño | 10 | 8  | 6  |
-| Mediano | 5  | 3  | 8  |
-| Grande | 7  | 9  | 6  |
-| Extra grande | 100| 80 | 70 |
+| Pequeño | 350 | 600 | 850 |
+| Mediano | 100 | 500 | 750 |
+| Grande | 175 | 400 | 350 |
+| Extra grande | 140 | 100 | 500 |
+
+*Supongamos que cada máquina puede ser usada 80 horas semanales y que el coste
+operativo por hora de cada una es 70, 50 y 40 u.m. respectivamente. Si se
+necesitan 12000, 9000, 6000 y 7000 metros de cada tipo de listones por semana,
+formular un modelo para minimizar costes.*
+
 + Variable de decisión:
 $x_{ij}$
 
