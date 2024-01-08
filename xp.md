@@ -8,6 +8,11 @@ ander.sanchez.penas@udc.es
 heitor.cambre@udc.es
 
 ## Ejercicio 1
+*Tienes 5000 euros disponibles para invertirlos durante los próximos cuatro años.
+Al inicio de cada año puedes invertir parte del dinero en depósitos a un año o a dos
+años. Los depósitos a un año pagan un interés del 3 %, mientras que los depósitos a
+dos años pagan un 7% al final de los dos años. El objetivo es conseguir que al cabo de
+los cuatro años tu capital sea lo mayor posible.*
 + Variable de decisión:
 $x_{ij}$ ($i$ es el año y $j$ el tipo de inversion)
 
