@@ -8,7 +8,6 @@ ander.sanchez.penas@udc.es
 heitor.cambre@udc.es
 
 ## Ejercicio 1
-*Tienes 5000 euros disponibles para invertirlos durante los próximos cuatro años. Al inicio de cada año puedes invertir parte del dinero en depósitos a un año o a dos años. Los depósitos a un año pagan un interés del 3%, mientras que los depósitos a dos años pagan un 7% al final de los dos años. El objetivo es conseguir que al cabo de los tres años tu capital sea lo mayor posible.*
 + Variable de decisión:
 $x_{ij}$ ($i$ es el año y $j$ el tipo de inversion)
 
@@ -23,24 +22,61 @@ $$x_{40} + 1.03x_{41} + 1.07x_{32} = x_{50}$$
 
 + Resolución (con LPSolve IDE):
 ```
-/* Objective function */
-max: x50;
+from pyomo.environ import *
+from pyomo.opt import SolverFactory
 
-/* Variable bounds */
-x10 >= 0; x11 >= 0; x12 >= 0; x20 >= 0; x21 >= 0; x22 >= 0; x30 >= 0; x31 >= 0; x32 >= 0; x40 >= 0; x41 >= 0; x42 >= 0; x50>=0;
-x10+x11+x12=5000;
-x10+1.3*x11=x20+x21+x22;
-x20+1.3*x21+1.7*x12=x30+x31+x32;
-x30+1.3*x31+1.7*x22=x40+x41+x42;
-x40+1.3*x41+1.7*x32=x50;
+
+model = ConcreteModel()
+model.dual = Suffix(direction=Suffix.IMPORT)
+
+model.x10 = Var(within=NonNegativeReals)
+model.x11 = Var(within=NonNegativeReals)
+model.x12 = Var(within=NonNegativeReals)
+model.x20 = Var(within=NonNegativeReals)
+model.x21 = Var(within=NonNegativeReals)
+model.x22 = Var(within=NonNegativeReals)
+model.x30 = Var(within=NonNegativeReals)
+model.x31 = Var(within=NonNegativeReals)
+model.x32 = Var(within=NonNegativeReals)
+model.x40 = Var(within=NonNegativeReals)
+model.x41 = Var(within=NonNegativeReals)
+model.x42 = Var(within=NonNegativeReals)
+model.x50 = Var(within=NonNegativeReals)
+
+model.obj = Objective(expr=model.x50, sense=maximize)
+
+model.con1 = Constraint(expr=model.x10 + model.x11 + model.x12 == 5000)
+model.con2 = Constraint(expr=model.x10 + 1.03 * model.x11 == model.x20 + model.x21 + model.x22)
+model.con3 = Constraint(expr=model.x20 + 1.03 * model.x21 + 1.07 * model.x12 == model.x30 + model.x31 + model.x32)
+model.con4 = Constraint(expr=model.x30 + 1.03 * model.x31 + 1.07 * model.x22 == model.x40 + model.x41 + model.x42)
+model.con5 = Constraint(expr=model.x40 + 1.03 * model.x41 + 1.07 * model.x32 == model.x50)
+
+results = SolverFactory('glpk').solve(model)
+
+print("Valor óptimo de la función objetivo:", model.obj())
+
+for v in model.component_data_objects(Var, active=True):
+    print(f"{v}: {value(v)}")
 ```
 
 + Resultados obtenidos:
-![[resultados p1 xp.png]]
-Para maximizar el capital que tendremos dentro de 3 años:
-+ Este año invertimos en depósitos a 1 año todo nuestro dinero. 1500\*1.04=1560€.
-+ El segundo año invertimos también en depósitos a 1 año nuestro dinero. 1560*\1.04=1622.4€.
-+ El tercer año invertimos también en depósitos a 1 año nuestro dinero. 1622.4€\*1.04=1687.296€.
+```
+Valor óptimo de la función objetivo: 5724.5
+x10: 0.0
+x11: 0.0
+x12: 5000.0
+x20: 0.0
+x21: 0.0
+x22: 0.0
+x30: 0.0
+x31: 0.0
+x32: 5350.0
+x40: 0.0
+x41: 0.0
+x42: 0.0
+x50: 5724.5 
+```
++ En el primer y tercer año invertimos todo al 7% de interés en 2 años teniendo a final 5724.5 
 
 ## Ejercicio 2
 *Una empresa produce listones de madera en cuatro medidas: pequeño, mediano,
