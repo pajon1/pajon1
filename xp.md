@@ -179,8 +179,8 @@ x13:12
 x14:17..14286
 x15:0
 ```
-++ El coste óptimo es aproximadamente de 2290.42€
-++ Se emplea la máquina C para producir madera pequeña durante 14 horas y 7 minutos (aprox.)
-++ Se emplea la máquina C para producir madera mediana durante 12 horas.
-++ Se emplea la máquina C para producir madera grande durante 17 horas y 9 minutos (aprox.)
-++ Se emplea la máquina C para producir madera extra grande durante 14 horas.
++ El coste óptimo es aproximadamente de 2290.42€
++ Se emplea la máquina C para producir madera pequeña durante 14 horas y 7 minutos (aprox.)
++ Se emplea la máquina C para producir madera mediana durante 12 horas.
++ Se emplea la máquina C para producir madera grande durante 17 horas y 9 minutos (aprox.)
++ Se emplea la máquina C para producir madera extra grande durante 14 horas.
