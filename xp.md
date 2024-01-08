@@ -101,7 +101,7 @@ necesitan 12000, 9000, 6000 y 7000 metros de cada tipo de listones por semana,
 formular un modelo para minimizar costes.*
 
 + Variable de decisión:
-$x_{ij}$
+$x_{i}$
 
 $i$ representa la maquina con la misma letra.
 
