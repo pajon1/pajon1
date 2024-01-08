@@ -50,11 +50,20 @@ model.x50 = Var(within=NonNegativeReals)
 
 model.obj = Objective(expr=model.x50, sense=maximize)
 
-model.con1 = Constraint(expr=model.x10 + model.x11 + model.x12 == 5000)
-model.con2 = Constraint(expr=model.x10 + 1.03 * model.x11 == model.x20 + model.x21 + model.x22)
-model.con3 = Constraint(expr=model.x20 + 1.03 * model.x21 + 1.07 * model.x12 == model.x30 + model.x31 + model.x32)
-model.con4 = Constraint(expr=model.x30 + 1.03 * model.x31 + 1.07 * model.x22 == model.x40 + model.x41 + model.x42)
-model.con5 = Constraint(expr=model.x40 + 1.03 * model.x41 + 1.07 * model.x32 == model.x50)
+model.con1 = Constraint(expr=model.x10 + model.x11 + model.x12 
+                        == 5000)
+
+model.con2 = Constraint(expr=model.x10 + 1.03 * model.x11 
+                        == model.x20 + model.x21 + model.x22)
+
+model.con3 = Constraint(expr=model.x20 + 1.03 * model.x21 + 1.07 * model.x12 
+                        == model.x30 + model.x31 + model.x32)
+
+model.con4 = Constraint(expr=model.x30 + 1.03 * model.x31 + 1.07 * model.x22 
+                        == model.x40 + model.x41 + model.x42)
+
+model.con5 = Constraint(expr=model.x40 + 1.03 * model.x41 + 1.07 * model.x32 
+                        == model.x50)
 
 results = SolverFactory('glpk').solve(model)
 
@@ -128,41 +137,36 @@ from pyomo.opt import SolverFactory
 model = ConcreteModel()
 model.dual = Suffix(direction=Suffix.IMPORT)
 
-model.x10 = Var(within=NonNegativeReals)
-model.x11 = Var(within=NonNegativeReals)
-model.x12 = Var(within=NonNegativeReals)
-model.x20 = Var(within=NonNegativeReals)
-model.x21 = Var(within=NonNegativeReals)
-model.x22 = Var(within=NonNegativeReals)
-model.x30 = Var(within=NonNegativeReals)
-model.x31 = Var(within=NonNegativeReals)
-model.x32 = Var(within=NonNegativeReals)
-model.x40 = Var(within=NonNegativeReals)
-model.x41 = Var(within=NonNegativeReals)
-model.x42 = Var(within=NonNegativeReals)
-model.x50 = Var(within=NonNegativeReals)
+model.xPA = Var(within=NonNegativeReals)
+model.xPB = Var(within=NonNegativeReals)
+model.xPC = Var(within=NonNegativeReals)
+model.xMA = Var(within=NonNegativeReals)
+model.xMB = Var(within=NonNegativeReals)
+model.xMC = Var(within=NonNegativeReals)
+model.xGA = Var(within=NonNegativeReals)
+model.xGB = Var(within=NonNegativeReals)
+model.xGC = Var(within=NonNegativeReals)
+model.xEA = Var(within=NonNegativeReals)
+model.xEB = Var(within=NonNegativeReals)
+model.xEC = Var(within=NonNegativeReals)
 
-model.obj = Objective(expr=model.x50, sense=maximize)
+model.obj = Objective(expr=70(model.xPA + model.xMA + model.xGA + model.xEA) 
+                      + 50(model.xPB + model.xMB + model.xGB + model.xEB) 
+                      + 40(model.xPC + model.xMC + model.xGC + model.xEC) , sense=minimize)
 
-model.con1 = Constraint(expr=model.x10 + model.x11 + model.x12 
-                        == 5000)
 
-model.con2 = Constraint(expr=model.x10 + 1.03 * model.x11 
-                        == model.x20 + model.x21 + model.x22)
+model.con1 = Constraint(expr=350model.xPA + 600model.xPB + 850model.xPC == 12000)
+model.con2 = Constraint(expr=100model.xMA + 500model.xMB + 750model.xMC == 9000)
+model.con3 = Constraint(expr=175model.xGA + 400model.xGB + 350model.xGC == 6000)
+model.con4 = Constraint(expr=140model.xEA + 100model.xEB + 500*model.xEC == 7000)
 
-model.con3 = Constraint(expr=model.x20 + 1.03 * model.x21 + 1.07 * model.x12 
-                        == model.x30 + model.x31 + model.x32)
-
-model.con4 = Constraint(expr=model.x30 + 1.03 * model.x31 + 1.07 * model.x22 
-                        == model.x40 + model.x41 + model.x42)
-
-model.con5 = Constraint(expr=model.x40 + 1.03 * model.x41 + 1.07 * model.x32 
-                        == model.x50)
+model.con5 = Constraint(expr=model.xPA + model.xMA + model.xGA + model.xEA <= 80)
+model.con6 = Constraint(expr=model.xPB + model.xMB + model.xGB + model.xEB <= 80)
+model.con7 = Constraint(expr=model.xPC + model.xMC + model.xGC + model.xEC <= 80)
 
 results = SolverFactory('glpk').solve(model)
 
 print("Valor óptimo de la función objetivo:", model.obj())
-
 for v in model.component_data_objects(Var, active=True):
     print(f"{v}: {value(v)}")
 ```
