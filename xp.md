@@ -119,22 +119,45 @@ $$x_{ap} + x_{am} + x_{ag} + x_{ax} = x_{a}$$
 $$x_{bp} + x_{bm} + x_{bg} + x_{bx} = x_{b}$$
 $$x_{cp} + x_{cm} + x_{cg} + x_{cx} = x_{c}$$
 
-+ Resolución (con LPSolve IDE):
++ Resolución (con Pyomo):
 ```
-/* Objective function */
-min: 70x1+50x2+40x3;
+from pyomo.environ import *
+from pyomo.opt import SolverFactory
 
-/* Variable bounds */
-350x4 + 600x8 + 800x12 = 12000;
-100x5 + 500x9 + 750x13 = 9000;
-175x6 + 400x10 + 350x14 = 6000;
-140x7 + 100x11 + 500x15 = 7000;
-x1= x4 +x5 +x6 +x7;
-x2= x8 +x9 +x10 +x11;
-x3= x12 +x13 +x14 +x15;
-x1<=80;
-x2<=80;
-x3<=80;
+
+model = ConcreteModel()
+model.dual = Suffix(direction=Suffix.IMPORT)
+
+model.xPA = Var(within=NonNegativeReals)
+model.xPB = Var(within=NonNegativeReals)
+model.xPC = Var(within=NonNegativeReals)
+model.xMA = Var(within=NonNegativeReals)
+model.xMB = Var(within=NonNegativeReals)
+model.xMC = Var(within=NonNegativeReals)
+model.xGA = Var(within=NonNegativeReals)
+model.xGB = Var(within=NonNegativeReals)
+model.xGC = Var(within=NonNegativeReals)
+model.xEA = Var(within=NonNegativeReals)
+model.xEB = Var(within=NonNegativeReals)
+model.xEC = Var(within=NonNegativeReals)
+
+model.obj = Objective(expr=70(model.xPA + model.xMA + model.xGA + model.xEA) + 50(model.xPB + model.xMB + model.xGB + model.xEB) + 40(model.xPC + model.xMC + model.xGC + model.xEC) , sense=minimize)
+
+
+model.con1 = Constraint(expr=350model.xPA + 600model.xPB + 850model.xPC == 12000)
+model.con2 = Constraint(expr=100model.xMA + 500model.xMB + 750model.xMC == 9000)
+model.con3 = Constraint(expr=175model.xGA + 400model.xGB + 350model.xGC == 6000)
+model.con4 = Constraint(expr=140model.xEA + 100model.xEB + 500*model.xEC == 7000)
+
+model.con5 = Constraint(expr=model.xPA + model.xMA + model.xGA + model.xEA <= 80)
+model.con6 = Constraint(expr=model.xPB + model.xMB + model.xGB + model.xEB <= 80)
+model.con7 = Constraint(expr=model.xPC + model.xMC + model.xGC + model.xEC <= 80)
+
+results = SolverFactory('glpk').solve(model)
+
+print("Valor óptimo de la función objetivo:", model.obj())
+for v in model.component_data_objects(Var, active=True):
+    print(f"{v}: {value(v)}")
 ```
 
 + Resultados obtenidos:
@@ -156,3 +179,8 @@ x13:12
 x14:17..14286
 x15:0
 ```
+El coste óptimo es aproximadamente de 2290.42€
+Se emplea la máquina C para producir madera pequeña durante 14 horas y 7 minutos (aprox.)
+Se emplea la máquina C para producir madera mediana durante 12 horas.
+Se emplea la máquina C para producir madera grande durante 17 horas y 9 minutos (aprox.)
+Se emplea la máquina C para producir madera extra grande durante 14 horas.
