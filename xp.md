@@ -103,13 +103,13 @@ formular un modelo para minimizar costes.*
 + Variable de decisión:
 $x_{ij}$
 
-$i$ representa el avión, $j$ representa la aldea. Por ejemplo, $x_{11}$ sería la cantidad de viajes que hace el avión 1 a la aldea 1.
+$i$ representa la maquina con la misma letra.
 
 + Función objetivo:
 $$\text{Minimizar } Z =70x_{a} + 50x_{b} + 40x_{c}$$
 
 + Sujeto a:
-$$x_{i} \geq 0$$
+$$x_{i} \leq 80$$
 $$350x_{a} + 600x_{b} + 800x_{c} = 12000$$
 $$100x_{a} + 500x_{b} + 750x_{c} = 9000$$
 $$175x_{a} + 400x_{b} + 350x_{c} = 6000$$
