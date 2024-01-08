@@ -21,41 +21,18 @@ $$x_{20} + 1.03x_{21} + 1.07x_{12} = x_{30} + x_{31} + x_{32}$$
 $$x_{30} + 1.03x_{31} + 1.07x_{22} = x_{40} + x_{41} + x_{42}$$
 $$x_{40} + 1.03x_{41} + 1.07x_{32} = x_{50}$$
 
-+ Resolución (con Pyomo):
++ Resolución (con LPSolve IDE):
 ```
-import os
-from pyomo.environ import *
-os.environ['GLPSOL'] = '/usr/bin/glpsol'
+/* Objective function */
+max: x50;
 
-model = ConcreteModel()
-model.dual = Suffix(direction=Suffix.IMPORT)
-
-model.x10 = Var(within=NonNegativeReals)
-model.x11 = Var(within=NonNegativeReals)
-model.x12 = Var(within=NonNegativeReals)
-model.x20 = Var(within=NonNegativeReals)
-model.x21 = Var(within=NonNegativeReals)
-model.x22 = Var(within=NonNegativeReals)
-model.x30 = Var(within=NonNegativeReals)
-model.x31 = Var(within=NonNegativeReals)
-model.x32 = Var(within=NonNegativeReals)
-model.x40 = Var(within=NonNegativeReals)
-
-model.obj = Objective(expr=model.x40, sense=maximize)
-
-model.con1 = Constraint(expr=model.x10 + model.x11 + model.x12 == 1500)
-model.con2 = Constraint(expr=model.x10 + 1.04 * model.x11 == model.x20 + model.x21 + model.x22)
-model.con3 = Constraint(expr=model.x20 + 1.04 * model.x21 + 1.07 * model.x12 == model.x30 + model.x31 + model.x32)
-model.con4 = Constraint(expr=model.x30 + 1.04 * model.x31 + 1.07 * model.x22 == model.x40)
-
-solver = SolverFactory('glpk')
-results = solver.solve(model)
-
-print("Estado de la solución:", results.solver.status)
-print("Valor óptimo de la función objetivo:", model.obj())
-
-for v in model.component_data_objects(Var, active=True):
-    print(f"{v}: {value(v)}")s
+/* Variable bounds */
+x10 >= 0; x11 >= 0; x12 >= 0; x20 >= 0; x21 >= 0; x22 >= 0; x30 >= 0; x31 >= 0; x32 >= 0; x40 >= 0; x41 >= 0; x42 >= 0; x50>=0;
+x10+x11+x12=5000;
+x10+1.3*x11=x20+x21+x22;
+x20+1.3*x21+1.7*x12=x30+x31+x32;
+x30+1.3*x31+1.7*x22=x40+x41+x42;
+x40+1.3*x41+1.7*x32=x50;
 ```
 
 + Resultados obtenidos:
