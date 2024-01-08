@@ -106,7 +106,7 @@ $x_{ij}$
 $i$ representa el avión, $j$ representa la aldea. Por ejemplo, $x_{11}$ sería la cantidad de viajes que hace el avión 1 a la aldea 1.
 
 + Función objetivo:
-$$\text{Maximizar } Z = 10x_{11} + 8x_{12} + 6x_{13} + 9x_{14} + 12x_{15}$$$$   + 5x_{21} + 3x_{22} + 8x_{23} + 4x_{24} + 10x_{25}$$ $$  + 7x_{31} + 9x_{32} + 6x_{33} + 10x_{34} + 4x_{35}$$
+$$\text{Minimizar } Z =70x_{a} + 50x_{b} + 40x_{c}$$
 
 + Sujeto a:
 $$x_{ij}\geq0$$
