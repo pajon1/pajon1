@@ -8,17 +8,18 @@ ander.sanchez.penas@udc.es
 heitor.cambre@udc.es
 
 ## Ejercicio 1
-*Tienes 5000 euros disponibles para invertirlos durante los próximos tres años. Al inicio de cada año puedes invertir parte del dinero en depósitos a un año o a dos años. Los depósitos a un año pagan un interés del 3%, mientras que los depósitos a dos años pagan un 7% al final de los dos años. El objetivo es conseguir que al cabo de los tres años tu capital sea lo mayor posible.*
+*Tienes 5000 euros disponibles para invertirlos durante los próximos cuatro años. Al inicio de cada año puedes invertir parte del dinero en depósitos a un año o a dos años. Los depósitos a un año pagan un interés del 3%, mientras que los depósitos a dos años pagan un 7% al final de los dos años. El objetivo es conseguir que al cabo de los tres años tu capital sea lo mayor posible.*
 + Variable de decisión:
 $x_{ij}$ ($i$ es el año y $j$ el tipo de inversion)
 
 + Función objetivo:
-$$\text{Maximizar } Z = x_{40}$$
+$$\text{Maximizar } Z = x_{50}$$
 + Sujeto a:
 $$x_{ij} \geq 0$$ $$x_{10} + x_{11} + x_{12} = 5000$$
 $$x_{10} + 1.03x_{11} = x_{20} + x_{21} + x_{22}$$
 $$x_{20} + 1.03x_{21} + 1.07x_{12} = x_{30} + x_{31} + x_{32}$$
-$$x_{30} + 1.03x_{31} + 1.07x_{22} = x_{40}$$
+$$x_{30} + 1.03x_{31} + 1.07x_{22} = x_{40} + x_{41} + x_{42}$$
+$$x_{40} + 1.03x_{41} + 1.07x_{32} = x_{50}$$
 
 + Resolución (con Pyomo):
 ```
