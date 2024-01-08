@@ -101,9 +101,10 @@ necesitan 12000, 9000, 6000 y 7000 metros de cada tipo de listones por semana,
 formular un modelo para minimizar costes.*
 
 + Variable de decisión:
-$x_{i}$
+$x_{ij}$
 
 $i$ representa la maquina con la misma letra.
+$j$ se utliza para diferenciar las hora de lkos tipos de maderas cuando es necesario.
 
 + Función objetivo:
 $$\text{Minimizar } Z =70x_{a} + 50x_{b} + 40x_{c}$$
@@ -137,10 +138,21 @@ x3<=80;
 ```
 
 + Resultados obtenidos:
-![[XP programación lineal.png]]
-Para maximizar la cantidad de alimento se desprecia que haya aldeas que se queden sin alimento:
-+ El avión 1 solo viaja a la aldea 1, pero un total de 50 veces, llevando 10 U de alimento de cada vez. Esto nos da 500 U de alimento.
-+ El avión 2 hace 90 viajes, 70 a la aldea 3 y 20 a la aldea 5. Esto nos da 560+200=760 U de alimento.
-+ El avión hace 60 viajes, 20 a la aldea 2 y 40 a la aldea 4. Esto nos da 180+400=580 U de alimento.
-
-En total, los 3 aviones han llevado 500+580+760=1840 U de alimento.
+```
+Valor óptimo de la función objetivo: 2325.71429
+x1:0
+x2:0
+x3: 58.14286
+x4:0
+x5:0
+x6:0
+x7:0
+x8:0
+x9:0
+x10:0
+x11:0
+x12:15
+x13:12
+x14:17..14286
+x15:0
+```
