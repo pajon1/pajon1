@@ -1,14 +1,16 @@
-[[Xestión de Proxectos]]
+##Práctica voluntaria XP
 
 + Pablo Pajón Area
 p.pajon@udc.es
++ Ánder Sánchez Penas
+ander.sanchez.penas@udc.es
++ Heitor Cambre Garcia
+heitor.cambre@udc.es
 
 ## Ejercicio 1
 *Tienes 5000 euros disponibles para invertirlos durante los próximos tres años. Al inicio de cada año puedes invertir parte del dinero en depósitos a un año o a dos años. Los depósitos a un año pagan un interés del 3%, mientras que los depósitos a dos años pagan un 7% al final de los dos años. El objetivo es conseguir que al cabo de los tres años tu capital sea lo mayor posible.*
 + Variable de decisión:
-$x_{ij}$
-
-$i$ representa el año, $j$ representa la inversión (o 0 si no se invierte). Por ejemplo, $x_{11}$ sería la inversión en el primer año en depósitos a un año.
+$x_{ij}$ ($i$ es el año y $j$ el tipo de inversion)
 
 + Función objetivo:
 $$\text{Maximizar } Z = x_{40}$$
