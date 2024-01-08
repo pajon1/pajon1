@@ -25,7 +25,7 @@ $$x_{20} + 1.03x_{21} + 1.07x_{12} = x_{30} + x_{31} + x_{32}$$
 $$x_{30} + 1.03x_{31} + 1.07x_{22} = x_{40} + x_{41} + x_{42}$$
 $$x_{40} + 1.03x_{41} + 1.07x_{32} = x_{50}$$
 
-+ Resolución (con LPSolve IDE):
++ Resolución (con Pyomo):
 ```
 from pyomo.environ import *
 from pyomo.opt import SolverFactory
